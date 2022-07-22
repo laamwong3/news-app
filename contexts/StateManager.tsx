@@ -1,16 +1,11 @@
-import React, { createContext, useContext, useState } from "react";
+import SearchBarContext from "./SearchBarContext";
 
 interface StateManagerProps {
   children: React.ReactNode;
 }
 
-interface StatesTypes {}
-
-const StateStore = createContext({} as StatesTypes);
-
 const StateManager = ({ children }: StateManagerProps) => {
-  return <StateStore.Provider value={{}}>{children}</StateStore.Provider>;
+  return <SearchBarContext>{children}</SearchBarContext>;
 };
 
 export default StateManager;
-export const useStateAPI = () => useContext(StateStore);

@@ -1,34 +1,22 @@
-import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-
-interface CategoryType {
-  category:
-    | "business"
-    | "entertainment"
-    | "general"
-    | "health"
-    | "science"
-    | "sports"
-    | "technology";
-}
-
-const categories: CategoryType[] = [
-  { category: "business" },
-  { category: "entertainment" },
-  { category: "general" },
-  { category: "health" },
-  { category: "science" },
-  { category: "sports" },
-  { category: "technology" },
-];
+import { categories } from "../../constants/selectBoxDetails";
+import { useSearchBarContext } from "../../contexts/SearchBarContext";
 
 export default function CategorySelect() {
+  const { category, setCategory } = useSearchBarContext();
   return (
     <Autocomplete
       sx={{ width: 300 }}
       options={categories}
+      value={category}
+      onChange={(e, newValue) => {
+        if (newValue) {
+          setCategory(newValue);
+        }
+      }}
       autoHighlight
       getOptionLabel={(option) => option.category.toUpperCase()}
       renderInput={(params) => (
