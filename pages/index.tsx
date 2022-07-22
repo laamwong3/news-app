@@ -22,8 +22,8 @@ const Home: NextPage = () => {
         >
           <MainTitle />
           <SearchBar />
-          <NewsContent />
         </Stack>
+        <NewsContent />
       </Box>
     </>
   );

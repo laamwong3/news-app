@@ -1,17 +1,16 @@
 export interface CountryType {
   name: string;
-  country: "au" | "us" | "hk" | "tw";
+  country: "au" | "us";
 }
 
 export const countries: CountryType[] = [
-  { name: "Australia", country: "au" },
   { name: "US", country: "us" },
-  { name: "Hong Kong", country: "hk" },
-  { name: "Taiwan", country: "tw" },
+  { name: "Australia", country: "au" },
 ];
 
 export interface CategoryType {
   category:
+    | "all"
     | "business"
     | "entertainment"
     | "general"
@@ -22,6 +21,7 @@ export interface CategoryType {
 }
 
 export const categories: CategoryType[] = [
+  { category: "all" },
   { category: "business" },
   { category: "entertainment" },
   { category: "general" },
