@@ -7,7 +7,7 @@ const HeaderBanner = () => {
   return (
     <>
       <Box height="100vh" position="absolute" width="100vw" zIndex={-2}>
-        <Image src={banner} objectFit="cover" layout="fill" />
+        <Image src={banner} objectFit="cover" layout="fill" priority />
       </Box>
     </>
   );
