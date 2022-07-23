@@ -18,13 +18,15 @@ const noImagePlaceholderLink =
 export default function NewsCard({ news }: NewsCardProps) {
   // console.log(news);
   return (
-    <Card
-      sx={{
-        width: 300,
-        height: 350,
-      }}
-    >
-      <CardActionArea href={news.url ?? ""} target="_blank">
+    <Card>
+      <CardActionArea
+        href={news.url ?? ""}
+        target="_blank"
+        sx={{
+          width: 300,
+          height: 350,
+        }}
+      >
         <Image
           //loader={({ src, width }) => news.urlToImage ?? noImagePlaceholderLink}
           src={news.urlToImage ?? noImagePlaceholderLink}
