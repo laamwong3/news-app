@@ -3,32 +3,52 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Box, Button, CardActionArea, CardActions, Stack } from "@mui/material";
+import Image from "next/image";
+import { News, Article } from "../../pages/api/news";
+import { useRouter } from "next/router";
 
-export default function NewsCard() {
+interface NewsCardProps {
+  news: Article;
+}
+
+const noImagePlaceholderLink =
+  "https://aestheticmedicalpractitioner.com.au/wp-content/uploads/2021/06/no-image.jpg";
+
+export default function NewsCard({ news }: NewsCardProps) {
+  // console.log(news);
   return (
-    <Card sx={{ height: 300, width: 300 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
+    <Card
+      sx={{
+        width: 300,
+        height: 350,
+      }}
+    >
+      <CardActionArea href={news.url ?? ""} target="_blank">
+        <Image
+          //loader={({ src, width }) => news.urlToImage ?? noImagePlaceholderLink}
+          src={news.urlToImage ?? noImagePlaceholderLink}
+          width={300}
+          height={140}
+          unoptimized
+          // layout="fixed"
         />
+
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
+          <Stack direction="row">
+            <Typography sx={{ fontSize: 10 }} flex={1}>
+              {new Date(news.publishedAt!).toDateString()}
+            </Typography>
+            <Typography sx={{ fontSize: 10 }}>{news.source?.name}</Typography>
+          </Stack>
+          <Typography variant="subtitle2" pt={2} gutterBottom fontWeight="bold">
+            {news.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
+          <Typography sx={{ fontSize: 10 }}>
+            {news.description?.slice(0, 200) + "..."}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
     </Card>
   );
 }
